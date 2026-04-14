@@ -79,6 +79,8 @@ UPWAVE-KOH
 
 ## 시작하는 방법
 
+> **이 가이드는 [Claude Code](https://claude.ai/code) 기준으로 작성되었습니다.**
+
 ### 1단계 — Repo Fork
 
 GitHub 우측 상단 **Fork** 버튼 클릭
@@ -110,22 +112,20 @@ claude skills add skills/skill-creator
 
 > 설치 확인: Claude Code 내에서 `/skills` 실행 → `skill-creator` 목록에 표시
 
-### 4단계 — Upstage API 키 설정
+### 4단계 — Skill 만들기
 
-```bash
-cp skills/skill-creator/assets/.env.example .env
-# .env 파일을 열어 UPSTAGE_API_KEY 값 입력
-```
-
-API 키 발급: [console.upstage.ai](https://console.upstage.ai) → 우측 상단 → **API Keys** → **Create new key**
-
-### 5단계 — Skill 만들기
-
-Claude Code 프롬프트에 아래와 같이 입력하면 skill-creator가 단계별로 안내합니다:
+Claude Code 프롬프트에 아래와 같이 입력하세요.  
+**Upstage API 키 설정 등 모든 초기 설정을 skill-creator가 안내합니다.**
 
 ```
 > Skillthon용 스킬을 만들고 싶어요
 ```
+
+skill-creator가 순서대로 안내하는 항목:
+1. Upstage API 키 입력 및 `.env` 설정
+2. 만들 스킬 아이디어 인터뷰
+3. 스킬 코드 생성 및 테스트
+4. 제출용 파일 구조 완성
 
 완성된 스킬 디렉토리가 repo 루트에 생성됩니다.
 
