@@ -11,9 +11,10 @@ Example:
 import re
 import sys
 from pathlib import Path
+from typing import Optional
 
 
-def validate_name(name: str) -> str | None:
+def validate_name(name: str) -> Optional[str]:
     """Return error string if name is invalid, else None."""
     if not name:
         return "스킬 이름을 입력해주세요."
@@ -317,20 +318,20 @@ EXAMPLE_MD = """\
 ## 입력
 
 ```json
-{{
+{
   "param1": "TODO: 예시 입력값"
-}}
+}
 ```
 
 ## 출력
 
 ```json
-{{
+{
   "result": "TODO: 예시 출력값",
-  "metadata": {{
+  "metadata": {
     "model": "solar-pro"
-  }}
-}}
+  }
+}
 ```
 
 ## 설명
