@@ -18,8 +18,8 @@
         "name": "Anthropic (adapted for JNU Skillthon)",
         "email": "gobeumsu@gmail.com"
       },
-      "homepage": "https://github.com/gobeumsu/JNU-Upstage-Skillthon",
-      "repository": "https://github.com/gobeumsu/JNU-Upstage-Skillthon",
+      "homepage": "https://github.com/GoBeromsu/JNU-Upstage-Skillthon",
+      "repository": "https://github.com/GoBeromsu/JNU-Upstage-Skillthon",
       "license": "MIT",
       "keywords": ["upstage", "solar", "skill", "agent", "jnu", "skillthon"],
       "category": "productivity"

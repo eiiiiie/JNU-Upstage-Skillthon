@@ -92,7 +92,7 @@ claude .
 Claude Code 내에서 실행:
 
 ```
-/plugin marketplace add gobeumsu/JNU-Upstage-Skillthon
+/plugin marketplace add GoBeromsu/JNU-Upstage-Skillthon
 /plugin install solar-skill-creator@solar-skill-creator
 ```
 
@@ -158,7 +158,7 @@ description: 이 스킬이 하는 일과 언제 사용해야 하는지. (WHAT + 
 
 | 문서 | 설명 |
 |------|------|
-| [solar-skill-creator Marketplace](https://github.com/gobeumsu/JNU-Upstage-Skillthon) | 이 repo — `solar-skill-creator` 마켓플레이스 |
+| [solar-skill-creator Marketplace](https://github.com/GoBeromsu/JNU-Upstage-Skillthon) | 이 repo — `solar-skill-creator` 마켓플레이스 |
 | [Claude Code Docs](https://docs.anthropic.com/en/docs/claude-code/) | Claude Code 공식 문서 (Skills, Plugins, Marketplace) |
 | [Upstage Console Docs](https://console.upstage.ai/docs) | Solar LLM, Embeddings, Document Parse API 레퍼런스 |
 
