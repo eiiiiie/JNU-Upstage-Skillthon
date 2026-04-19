@@ -150,4 +150,4 @@ Per-capability reference files (load on demand using the routing table in `### C
 - `references/upstage-classify.md` — Document classification into caller-defined categories. Docs: https://console.upstage.ai/docs/capabilities/classify
 - `references/upstage-embeddings.md` — Text embeddings for retrieval. Docs: https://console.upstage.ai/docs/capabilities/embed
 
-Live machine-readable Upstage API spec: https://console.upstage.ai/api/docs/for-agents/raw
+If the Upstage API returns an unexpected error or response shape, consult the live spec: https://console.upstage.ai/api/docs/for-agents/raw
