@@ -164,7 +164,7 @@ See `references/schemas.md` for the full schema (including the `assertions` fiel
 
 This section is one continuous sequence — don't stop partway through. Do NOT use `/skill-test` or any other testing skill.
 
-Put results in `<skill-name>-workspace/` as a sibling to the skill directory. Within the workspace, organize results by iteration (`iteration-1/`, `iteration-2/`, etc.) and within that, each test case gets a directory (`eval-0/`, `eval-1/`, etc.). Don't create all of this upfront — just create directories as you go.
+Put results in a writable `<skill-name>-workspace/` location that makes sense for the current environment and agent. Within that workspace, organize results by iteration (`iteration-1/`, `iteration-2/`, etc.) and within that, each test case gets a directory (`eval-0/`, `eval-1/`, etc.). Don't create all of this upfront — just create directories as you go.
 
 ### Step 1: Spawn all runs (with-skill AND baseline) in the same turn
 
@@ -486,13 +486,22 @@ Good luck!
 
 ## Upstage Solar API (JNU Skillthon Context)
 
-When the user is building a skill that uses the **Upstage Solar API** — or when the context is the JNU × Upstage Skillthon — read `references/upstage.md` before writing any code.
+When the user is building a skill that uses the **Upstage Solar API** — or when the context is the JNU × Upstage Skillthon — start at `references/README.md` and load only the per-API file(s) you actually need. Do **not** read all five up front.
+
+| User intent | Reference file |
+|-------------|----------------|
+| Generate / summarize / reason over text | `references/upstage-chat.md` |
+| Embed text for search, RAG, clustering, classification | `references/upstage-embeddings.md` |
+| Parse a document into structured HTML / Markdown with layout | `references/upstage-document-parse.md` |
+| Extract key/value fields from a document against a JSON Schema | `references/upstage-information-extract.md` |
+| Get raw text + word bounding boxes from a document image | `references/upstage-ocr.md` |
+
+For RAG over PDFs, compose them: **Parse → Embeddings (passage/query) → Chat**.
 
 Key points:
-- All skills must call Upstage API via `UPSTAGE_API_KEY` environment variable
-- Use the boilerplate in `references/upstage.md` for the `run()` function
-- Tell the user to copy `assets/.env.example` to `.env` and fill in their key
-- Available capabilities: **Chat** (Solar LLM), **Embeddings**, **Document Parsing**
-- Recommended model for chat: `solar-pro3`
+- All skills call Upstage via the `UPSTAGE_API_KEY` environment variable.
+- Tell the user to copy `assets/.env.example` to `.env` and fill in their key.
+- Recommended default chat model: `solar-pro3`.
+- If you are unsure which Upstage API the user needs, ask them before picking one — the wrong choice wastes credits.
 
 Do not validate whether `.env` is in `.gitignore` — just remind the user not to commit it.
