@@ -56,12 +56,11 @@ Start by understanding the user's intent. The current conversation might already
 
 ### Verify the API key is set
 
-Every Upstage call needs `UPSTAGE_API_KEY`. The template lives at `./assets/.env.example` (relative to this SKILL.md). Walk the user through this before drafting runtime code:
+Every Upstage call needs `UPSTAGE_API_KEY`. Walk the user through this before drafting runtime code:
 
 1. Issue a key at https://console.upstage.ai → API Keys.
 2. Redeem the `UPWAVE-KOH` referral code for $70 in starter credit.
-3. Read `./assets/.env.example` for the expected variable name, then copy it to the caller's project root as `.env` (e.g. `cp ./assets/.env.example <project-root>/.env`) and paste the key. Never commit the filled-in `.env` — add it to `.gitignore` if the project doesn't already ignore it. If the caller prefers not to use a dotenv file, `export UPSTAGE_API_KEY="up-..."` in their shell is an equivalent substitute.
-4. Confirm `UPSTAGE_API_KEY` is exported in the environment; fail fast with a message pointing back to step 1 if missing.
+3. Load `UPSTAGE_API_KEY` from `./assets/.env` (template: `./assets/.env.example`); fail fast if it's missing.
 
 ### Interview and Research
 
