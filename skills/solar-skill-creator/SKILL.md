@@ -42,30 +42,32 @@ Start by understanding the user's intent. The current conversation might already
 4. Should we set up test cases to verify the skill works? Skills with objectively verifiable outputs (file transforms, data extraction, code generation, fixed workflow steps) benefit from test cases. Skills with subjective outputs (writing style, art) often don't need them. Suggest the appropriate default based on the skill type, but let the user decide.
 5. Which Upstage capability fits the user's intent? Translate plain-language goals to API names — don't make the user learn the catalog. Use this mapping:
 
+   > All `./assets/…` and `./references/…` paths in this skill resolve relative to this SKILL.md file. Use them verbatim — don't rewrite them as absolute paths or as paths relative to the caller's cwd.
+
    | User intent | Upstage capability | Reference file |
    |---|---|---|
-   | Generate text: chat, summarize, translate, function calling, Korean/multilingual | **Upstage Chat (Solar LLM)** | `references/upstage-chat.md` |
-   | Parse documents: layout-aware text/structure extraction from PDFs (and scanned images via OCR mode) | **Upstage Document Parse** + **Document OCR** | `references/upstage-document-parse.md`, `references/upstage-ocr.md` |
-   | Extract specific named fields from documents (invoice totals, form values, contract clauses) | **Upstage Information Extract (Universal)** | `references/upstage-information-extract.md` |
-   | Classify documents into predefined categories (invoice / contract / receipt) | **Upstage Document Classification** | `references/upstage-classify.md` |
-   | Embed text for semantic search, similarity, retrieval | **Upstage Embeddings** | `references/upstage-embeddings.md` |
+   | Generate text: chat, summarize, translate, function calling, Korean/multilingual | **Upstage Chat (Solar LLM)** | `./references/upstage-chat.md` |
+   | Parse documents: layout-aware text/structure extraction from PDFs (and scanned images via OCR mode) | **Upstage Document Parse** + **Document OCR** | `./references/upstage-document-parse.md`, `./references/upstage-ocr.md` |
+   | Extract specific named fields from documents (invoice totals, form values, contract clauses) | **Upstage Information Extract (Universal)** | `./references/upstage-information-extract.md` |
+   | Classify documents into predefined categories (invoice / contract / receipt) | **Upstage Document Classification** | `./references/upstage-classify.md` |
+   | Embed text for semantic search, similarity, retrieval | **Upstage Embeddings** | `./references/upstage-embeddings.md` |
 
    If intent spans multiple capabilities, compose them as a pipeline (e.g., OCR → Document Parse → Information Extract). Confirm the mapping with the user in plain language before drafting.
 
 ### Verify the API key is set
 
-Every Upstage call needs `UPSTAGE_API_KEY`. Walk the user through this before drafting runtime code:
+Every Upstage call needs `UPSTAGE_API_KEY`. The template lives at `./assets/.env.example` (relative to this SKILL.md). Walk the user through this before drafting runtime code:
 
 1. Issue a key at https://console.upstage.ai → API Keys.
 2. Redeem the `UPWAVE-KOH` referral code for $70 in starter credit.
-3. Copy `assets/.env.example` and fill in the issued key.
+3. Read `./assets/.env.example` for the expected variable name, then copy it to the caller's project root as `.env` (e.g. `cp ./assets/.env.example <project-root>/.env`) and paste the key. Never commit the filled-in `.env` — add it to `.gitignore` if the project doesn't already ignore it. If the caller prefers not to use a dotenv file, `export UPSTAGE_API_KEY="up-..."` in their shell is an equivalent substitute.
 4. Confirm `UPSTAGE_API_KEY` is exported in the environment; fail fast with a message pointing back to step 1 if missing.
 
 ### Interview and Research
 
 Proactively ask questions about edge cases, input/output formats, example files, success criteria, and dependencies. Wait to write test prompts until you've got this part ironed out.
 
-Once the Upstage capability is chosen (see Capture Intent), load the matching `references/upstage-{capability}.md` to surface that API's request/response format (code blocks ready to drop into the skill) and known caveats. Each reference file mirrors the official Upstage docs and is the source of truth for the request shape.
+Once the Upstage capability is chosen (see Capture Intent), load the matching `./references/upstage-{capability}.md` (path is relative to this SKILL.md) to surface that API's request/response format (code blocks ready to drop into the skill) and known caveats. Each reference file mirrors the official Upstage docs and is the source of truth for the request shape.
 
 Check available MCPs - if useful for research (searching docs, finding similar skills, looking up best practices), research in parallel via subagents if available, otherwise inline. Come prepared with context to reduce burden on the user.
 
@@ -150,13 +152,13 @@ Try to explain to the model why things are important in lieu of heavy-handed mus
 
 ## References
 
-Per-capability reference files (load on demand using the routing table in `### Capture Intent`):
+Per-capability reference files (load on demand using the routing table in `### Capture Intent`; paths resolve relative to this SKILL.md):
 
-- `references/upstage-chat.md` — Solar LLM chat completions. Docs: https://console.upstage.ai/docs/capabilities/chat
-- `references/upstage-document-parse.md` — Layout-aware document extraction. Docs: https://console.upstage.ai/docs/capabilities/parse/api-quickstart
-- `references/upstage-ocr.md` — Document OCR for scans and handwriting. Docs: https://console.upstage.ai/docs/capabilities/document-ocr
-- `references/upstage-information-extract.md` — Schema-driven field extraction. Docs: https://console.upstage.ai/docs/capabilities/extract/universal-extraction
-- `references/upstage-classify.md` — Document classification into caller-defined categories. Docs: https://console.upstage.ai/docs/capabilities/classify
-- `references/upstage-embeddings.md` — Text embeddings for retrieval. Docs: https://console.upstage.ai/docs/capabilities/embed
+- `./references/upstage-chat.md` — Solar LLM chat completions. Docs: https://console.upstage.ai/docs/capabilities/chat
+- `./references/upstage-document-parse.md` — Layout-aware document extraction. Docs: https://console.upstage.ai/docs/capabilities/parse/api-quickstart
+- `./references/upstage-ocr.md` — Document OCR for scans and handwriting. Docs: https://console.upstage.ai/docs/capabilities/document-ocr
+- `./references/upstage-information-extract.md` — Schema-driven field extraction. Docs: https://console.upstage.ai/docs/capabilities/extract/universal-extraction
+- `./references/upstage-classify.md` — Document classification into caller-defined categories. Docs: https://console.upstage.ai/docs/capabilities/classify
+- `./references/upstage-embeddings.md` — Text embeddings for retrieval. Docs: https://console.upstage.ai/docs/capabilities/embed
 
 If the Upstage API returns an unexpected error or response shape, consult the live spec: https://console.upstage.ai/api/docs/for-agents/raw
